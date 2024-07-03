@@ -1,0 +1,60 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+  public static void main(String[] args) {
+    ArrayList <String> bookList = new ArrayList <String>(); 
+    Scanner scanner = new Scanner(System.in);
+
+    while(true) {
+    System.out.println("If you want to add book to the list, press 1. If you want to remove book from the list, press 2. If you want to see the whole list, press 3. If you want to exit, press 4.");
+
+      
+      int option = scanner.nextInt();
+      scanner.nextLine();
+    
+      if (option == 4){
+        System.out.println("You have exited.");
+        break;
+      } else if (option == 1){
+        System.out.println("What book would you like to add to the book management list?");
+        String book = scanner.nextLine();
+        addItem(bookList, book);
+      } else if (option == 2){
+        System.out.println("What book would you like to remove from the book management list?");
+        String book = scanner.nextLine();
+        removeItem(bookList, book);
+      } else if (option == 3){
+        printArrayList(bookList);
+      } else {
+        System.out.println("Invalid option.");
+      }
+    }
+    scanner.close();
+  }
+
+  public static void printArrayList(ArrayList<String> items){
+    clearConsole();
+    System.out.println("Your list contains: ");
+    for (String item : items){
+      System.out.println(item);
+    }
+  }
+
+  public static void addItem(ArrayList<String> items, String item){
+    clearConsole();
+    items.add(item);
+    System.out.println(item + " has been added to the book list. ");
+  }
+
+  public static void removeItem(ArrayList<String> items, String item){
+    clearConsole();
+    items.remove(item);
+    System.out.println(item + " has been removed from the book list. ");
+  }
+
+  public static void clearConsole(){
+    System.out.print("\033[H\033[2J");
+    System.out.flush(); 
+  }
+}
